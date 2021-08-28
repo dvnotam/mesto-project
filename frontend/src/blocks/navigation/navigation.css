@@ -1,0 +1,12 @@
+.navigation {
+    max-height: 22px;
+    display: flex;
+    flex-direction: row;
+    margin-top: 6px;
+}
+
+@media screen and (max-width: 769px) {
+    .navigation {
+
+    }
+}

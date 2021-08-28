@@ -1,0 +1,12 @@
+.element__like {
+    background: url('../../../images/lick.svg') center no-repeat;
+    color: black;
+    min-height: 19px;
+    min-width: 22px;
+    border: none;
+    cursor: pointer;
+}
+
+.element__like:hover {
+    opacity: 0.6;
+}
