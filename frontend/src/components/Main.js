@@ -4,6 +4,8 @@ import { CurrentUserContext } from '../contexts/CurrentUserContext.js';
 
 function Main (props) {
     const currentUser = React.useContext(CurrentUserContext);
+    console.log(currentUser, 'user main')
+    console.log(props.cards, '--> props main')
 
     return (
         <main>

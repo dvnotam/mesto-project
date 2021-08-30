@@ -42,7 +42,6 @@ module.exports.deleteCard = async (req, res, next) => {
     }
 
     const cardDelete = await CardSchema.findByIdAndRemove(cardId)
-      .orFail(new Error('Error'));
     return res.json({ cardDelete });
   } catch (err) {
     switch (err.name) {

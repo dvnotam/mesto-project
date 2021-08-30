@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const { errors } = require('celebrate');
+const cors = require('cors');
 
 const { PORT = 3000 } = process.env;
 const { ErrorHandler, errType } = require('./error/ErrorHandler');
@@ -14,6 +15,7 @@ const { requestLogger, errorLogger } = require('./middlewares/logger');
 const { createUser, login } = require('./controllers/users');
 
 const app = express();
+app.use(cors({ credentials: true, origin: true }));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -25,6 +27,11 @@ mongoose.connect('mongodb://localhost:27017/mestodb', {
   useFindAndModify: false,
 });
 
+app.get('/crash-test', () => {
+  setTimeout(() => {
+    throw new Error('Сервер сейчас упадёт');
+  }, 0);
+});
 app.post('/signin', validationSignIn, login);
 app.post('/signup', validationSignUp, createUser);
 

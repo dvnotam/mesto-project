@@ -14,6 +14,7 @@ class Api {
     setUserInfo(data) {
         return fetch(`${this._baseUrl}/users/me`, {
             method: 'PATCH',
+            credentials: 'include',
             headers: this._headers,
             body: JSON.stringify({
                 name: data.name,
@@ -33,6 +34,7 @@ class Api {
     addCard(data) {
         return fetch(`${this._baseUrl}/cards`, {
             method: 'POST',
+            credentials: 'include',
             headers: this._headers,
             body: JSON.stringify({
                 name: data.name,
@@ -45,22 +47,25 @@ class Api {
     deleteCard(id) {
         return fetch(`${this._baseUrl}/cards/${id}`, {
             method: 'DELETE',
+            credentials: 'include',
             headers: this._headers
         })
             .then(this._checkResponse)
     }
 
     addLike(id) {
-        return fetch(`${this._baseUrl}/cards/likes/${id}`, {
+        return fetch(`${this._baseUrl}/cards/${id}/likes`, {
             method: 'PUT',
+            credentials: 'include',
             headers: this._headers
         })
             .then(this._checkResponse)
     }
 
     deleteLike(id) {
-        return fetch(`${this._baseUrl}/cards/likes/${id}`, {
+        return fetch(`${this._baseUrl}/cards/${id}/likes`, {
             method: 'DELETE',
+            credentials: 'include',
             headers: this._headers
         })
             .then(this._checkResponse)
@@ -77,6 +82,7 @@ class Api {
     updateAvatar(data) {
         return fetch(`${this._baseUrl}/users/me/avatar`, {
             method: 'PATCH',
+            credentials: 'include',
             headers: this._headers,
             body: JSON.stringify({
                 avatar: data.avatar
@@ -97,9 +103,9 @@ export const api = () => {
     const token = localStorage.getItem('token') || ''
 
     return new Api({
-        baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-23',
+        baseUrl: 'http://localhost:3000',
         headers: {
-            authorization: '003a5599-a194-411d-bc3c-1ecd4eb68232',
+            Authorization: `Bearer ${token}`,
             "content-type": "application/json"
         }
     });

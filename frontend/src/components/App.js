@@ -15,7 +15,6 @@ import ImagePopup from './ImagePopup.js'
 import AddPlacePopup from './AddPlacePopup.js'
 import InfoTooltip from './InfoTooltip.js'
 import Register from "./Register.js";
-import {checkResponse} from "../utils/auth.js";
 
 function App() {
   const [ isEditProfilePopupOpen, setIsEditProfilePopupOpen ] = React.useState(false);
@@ -31,7 +30,6 @@ function App() {
   const [ isSuccessfulRegistration, setIsSuccessfulRegistration ] = React.useState(false);
   const [ userEmail, setUserEmail ] = React.useState('');
   const history = useHistory();
-
 
   React.useEffect(() => {
       if(loggedIn) {
@@ -50,7 +48,9 @@ function App() {
     ])
         .then(([userData, cardsData]) => {
           setCurrentUser(userData)
-          setCards(cardsData)
+          setCards(cardsData.cards)
+            console.log(cardsData.cards, 'cardsData')
+            console.log(userData, 'userData')
         })
         .catch((err) => console.log(err))
   }, []);
@@ -66,7 +66,6 @@ function App() {
 
   function handleAddPlaceClick() {
     setIsAddPlacePopupOpen(true)
-    console.log(isAddPlacePopupOpen)
   }
 
   function handleCardClick(card) {
@@ -78,6 +77,7 @@ function App() {
     api.setUserInfo(data)
         .then(userData => {
           setCurrentUser(userData)
+            console.log(userData, '--> userData')
           closePopups()
         })
         .catch((err) => console.log(err))
@@ -89,6 +89,7 @@ function App() {
     api.addCard(data)
         .then(newCard => {
           setCards([newCard, ...cards])
+            console.log(setCards, '---> setCards')
           closePopups()
         })
         .catch((err) => console.log(err))
