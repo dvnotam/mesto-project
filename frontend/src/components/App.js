@@ -47,10 +47,8 @@ function App() {
       api.getCards()
     ])
         .then(([userData, cardsData]) => {
-          setCurrentUser(userData)
+          setCurrentUser({ ...currentUser, ...userData })
           setCards(cardsData.cards)
-            console.log(cardsData.cards, 'cardsData')
-            console.log(userData, 'userData')
         })
         .catch((err) => console.log(err))
   }, []);
@@ -76,8 +74,7 @@ function App() {
     setIsLoading(true)
     api.setUserInfo(data)
         .then(userData => {
-          setCurrentUser(userData)
-            console.log(userData, '--> userData')
+          setCurrentUser({ ...currentUser, ...userData })
           closePopups()
         })
         .catch((err) => console.log(err))
@@ -100,7 +97,7 @@ function App() {
     setIsLoading(true)
     api.updateAvatar(data)
         .then(avatar => {
-          setCurrentUser(avatar)
+          setCurrentUser({ ...currentUser, avatar })
           closePopups()
         })
         .catch((err) => console.log(err))
@@ -117,9 +114,10 @@ function App() {
   }
 
   function handleCardLike(card) {
-    const isLiked = card.likes.some(i => i._id === currentUser._id);
-    api.changeLikeCardStatus(card._id, !isLiked).then((addCard) => {
-      setCards((cards) => cards.map((c) => c._id === card._id ? addCard : c));
+    const isLiked = card.likes.some(i => i === currentUser._id);
+    console.log(card.likes, currentUser._id, isLiked, '---> like')
+    api.changeLikeCardStatus(card._id, isLiked).then((addCard) => {
+      setCards((cards) => cards.map((c) => c._id === card._id ? addCard.likes : c));
     })
         .catch((err) => console.log(err))
   }
@@ -176,7 +174,6 @@ function App() {
           console.log('У вас нет токена')
       }
   }
-
 
   return (
    <CurrentUserContext.Provider value={currentUser}>

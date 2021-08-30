@@ -18,7 +18,7 @@ module.exports.getCurrentUser = async (req, res, next) => {
   try {
     const user = await UserSchema.findById(req.user._id);
     console.log(user)
-    return res.json({ _id: user._id, email: user.email });
+    return res.json({ _id: user._id, email: user.email, avatar: user.avatar, name: user.name, about: user.about });
   } catch (err) {
     console.log(err)
     return next(new ErrorHandler(errType.user, 500));
@@ -83,7 +83,7 @@ module.exports.updateUser = async (req, res, next) => {
       { name, about },
       { new: true, runValidators: true },
     )
-    return res.json({ user });
+    return res.json({ avatar: user.avatar, name: user.name, about: user.about });
   } catch (err) {
     console.log(err)
     switch (err.name) {
@@ -107,8 +107,7 @@ module.exports.updateAvatar = async (req, res, next) => {
       { avatar },
       { new: true, runValidators: true },
     )
-      .orFail(new Error('Error'));
-    return res.json({ user });
+    return res.json({ avatar });
   } catch (err) {
     switch (err.name) {
       case 'ValidationError':

@@ -6,6 +6,7 @@ class Api {
 
     getUserInfo() {
         return fetch(`${this._baseUrl}/users/me`, {
+            method: 'GET',
             headers: this._headers
         })
             .then(this._checkResponse)
@@ -26,6 +27,7 @@ class Api {
 
     getCards() {
         return fetch(`${this._baseUrl}/cards`, {
+            method: 'GET',
             headers: this._headers
         })
             .then(this._checkResponse)
@@ -72,11 +74,8 @@ class Api {
     }
 
     changeLikeCardStatus (id, isLiked) {
-        if (!isLiked) {
-            return this.deleteLike(id)
-        } else {
-            return this.addLike(id)
-        }
+        console.log(id, isLiked, '---> cl')
+        return isLiked ? this.deleteLike(id) : this.addLike(id);
     }
 
     updateAvatar(data) {
