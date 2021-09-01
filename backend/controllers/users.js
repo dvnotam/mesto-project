@@ -1,7 +1,6 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
-const Error = require('../middlewares/errors');
 const UserSchema = require('../models/users');
 const { ErrorHandler, errType } = require('../error/ErrorHandler');
 
@@ -17,21 +16,19 @@ module.exports.getUser = async (req, res, next) => {
 module.exports.getCurrentUser = async (req, res, next) => {
   try {
     const user = await UserSchema.findById(req.user._id);
-    console.log(user)
-    return res.json({ _id: user._id, email: user.email, avatar: user.avatar, name: user.name, about: user.about });
+    return res.json({
+      _id: user._id, email: user.email, avatar: user.avatar, name: user.name, about: user.about,
+    });
   } catch (err) {
-    console.log(err)
     return next(new ErrorHandler(errType.user, 500));
   }
 };
 
 module.exports.getUserById = async (req, res, next) => {
   try {
-    const users = await UserSchema.findById({ _id: req.params.userId })
-    console.log(users, '---> user')
+    const users = await UserSchema.findById({ _id: req.params.userId });
     return res.json({ users });
   } catch (err) {
-    console.log(err, '---> err')
     switch (err.name) {
       case 'CastError':
       case 'Error':
@@ -82,10 +79,9 @@ module.exports.updateUser = async (req, res, next) => {
       id,
       { name, about },
       { new: true, runValidators: true },
-    )
+    );
     return res.json({ avatar: user.avatar, name: user.name, about: user.about });
   } catch (err) {
-    console.log(err)
     switch (err.name) {
       case 'ValidationError':
         return next(new ErrorHandler(errType.user, 400));
@@ -106,7 +102,7 @@ module.exports.updateAvatar = async (req, res, next) => {
       id,
       { avatar },
       { new: true, runValidators: true },
-    )
+    );
     return res.json({ avatar });
   } catch (err) {
     switch (err.name) {

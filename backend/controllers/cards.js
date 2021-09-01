@@ -41,7 +41,7 @@ module.exports.deleteCard = async (req, res, next) => {
       return next(new ErrorHandler(errType.card, 403));
     }
 
-    const cardDelete = await CardSchema.findByIdAndRemove(cardId)
+    const cardDelete = await CardSchema.findByIdAndRemove(cardId);
     return res.json({ cardDelete });
   } catch (err) {
     switch (err.name) {
