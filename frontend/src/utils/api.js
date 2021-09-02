@@ -102,7 +102,7 @@ export const api = () => {
     const token = localStorage.getItem('token') || ''
 
     return new Api({
-        baseUrl: 'https://dv.backend.nomoredomains.rocks/',
+        baseUrl: 'https://dv.backend.nomoredomains.rocks',
         headers: {
             Authorization: `Bearer ${token}`,
             "content-type": "application/json"
