@@ -1,4 +1,4 @@
-export const BASE_URL = "http://localhost:3000"
+export const BASE_URL = "https://dv.backend.nomoredomains.rocks"
 
 export function checkResponse (res) {
     if (res.ok) {
