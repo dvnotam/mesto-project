@@ -18,8 +18,8 @@ const app = express();
 app.use(cors({
   credentials: true,
   origin: [
-    'https://dv.frontend.nomoredomains.rocks/',
-    'http://dv.frontend.nomoredomains.rocks/',
+    'https://dv.frontend.nomoredomains.rocks',
+    'http://dv.frontend.nomoredomains.rocks',
     'https://localhost:3000',
     'http://localhost:3000',
   ],
