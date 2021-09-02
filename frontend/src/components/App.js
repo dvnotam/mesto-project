@@ -84,9 +84,8 @@ function App() {
   function handleAddPlaceSubmit(data){
     setIsLoading(true)
     api.addCard(data)
-        .then(newCard => {
-          setCards([newCard, ...cards])
-            console.log(setCards, '---> setCards')
+        .then(({ card }) => {
+          setCards([card, ...cards])
           closePopups()
         })
         .catch((err) => console.log(err))
@@ -166,7 +165,7 @@ function App() {
       if(token) {
           auth.getToken(token)
               .then((res) => {
-                  setUserEmail(res.data.email)
+                  setUserEmail(res.email)
                   setLoggedIn(true)
               })
               .catch(err => console.log(`Не удалось передать токен ${err}.`))
