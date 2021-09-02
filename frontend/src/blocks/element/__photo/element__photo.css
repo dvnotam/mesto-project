@@ -1,13 +1,13 @@
 .element__photo {
-    width: 282px;
-    min-height: 282px;
-    max-height: 282px;
-    object-fit: cover;
-    object-position: center;
-    border-radius: 10px 10px 0px 0px;
-    z-index: -1;
+  width: 282px;
+  min-height: 282px;
+  max-height: 282px;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 10px 10px 0px 0px;
+  z-index: -1;
 }
 
 .element__photo:hover {
-    opacity: 0.6;
+  opacity: 0.6;
 }

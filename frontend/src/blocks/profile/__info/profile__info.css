@@ -1,13 +1,13 @@
 .profile__info {
-    max-width: 294px;
-    display: flex;
-    flex-direction: column;
+  max-width: 294px;
+  display: flex;
+  flex-direction: column;
 }
 
 @media screen and (max-width: 769px) {
-    .profile__info {
-        width: 189px;
-        height: 54px;
-        align-items: center;
-    }
+  .profile__info {
+    width: 189px;
+    height: 54px;
+    align-items: center;
+  }
 }

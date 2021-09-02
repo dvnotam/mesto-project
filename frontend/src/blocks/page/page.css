@@ -1,9 +1,9 @@
 .page {
-    background-color: black;
-    max-width: 100%;
-    padding-top: 45px;
-    padding-bottom: 60px;
-    margin: 0 auto;
-    color: white;
-    font-family: 'Inter';
+  background-color: black;
+  max-width: 100%;
+  padding-top: 45px;
+  padding-bottom: 60px;
+  margin: 0 auto;
+  color: white;
+  font-family: "Inter";
 }

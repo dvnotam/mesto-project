@@ -1,19 +1,19 @@
 .element__trash {
-    margin: 0;
-    border: none;
-    background: url('../../../images/trash_image.svg');
-    position: absolute;
-    top: 18px;
-    right: 15px;
-    width: 18px;
-    height: 19px;
-    z-index: 1;
+  margin: 0;
+  border: none;
+  background: url("../../../images/trash_image.svg");
+  position: absolute;
+  top: 18px;
+  right: 15px;
+  width: 18px;
+  height: 19px;
+  z-index: 1;
 }
 
 .element__trash.hide {
-    display: none;
+  display: none;
 }
 
 .element__trash:hover {
-    opacity: 0.6;
+  opacity: 0.6;
 }
