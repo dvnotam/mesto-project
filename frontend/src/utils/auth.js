@@ -26,8 +26,8 @@ export function authorization (email, password) {
         method: 'POST',
         credentials: 'include',
         headers: {
-            'Content-Type': 'application/json',
             'Accept': 'application/json',
+            'Content-Type': 'application/json',
         },
         body: JSON.stringify({ email, password })
     })

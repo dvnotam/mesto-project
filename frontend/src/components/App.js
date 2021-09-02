@@ -134,8 +134,8 @@ function App() {
         return auth.authorization(email, password)
             .then((data) =>{
                 localStorage.setItem('token', data.token)
-                setUserEmail(email) // сохранил email пользователя в state
                 setLoggedIn(true)
+                setUserEmail(email)
                 history.push('/')
             })
             .catch(err => console.log(`Не удалось войти ${err}.`))
