@@ -22,6 +22,8 @@ app.use(cors({
     'http://dv.frontend.nomoredomains.rocks',
     'https://localhost:3000',
     'http://localhost:3000',
+    'https://localhost:3001',
+    'http://localhost:3001',
   ],
 }));
 
